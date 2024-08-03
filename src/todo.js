@@ -1,3 +1,6 @@
+import project from './project';
+
+
 class todo {
 
     constructor(title, description, dueDate, priority) {
@@ -28,7 +31,11 @@ class todo {
 }
 
 
+const loadTodos = (project) => {
 
 
-export default todo
+
+}
+
+export { todo, loadTodos }
 

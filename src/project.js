@@ -28,4 +28,19 @@ class project {
 
 }
 
-export default project;
+
+
+const loadProjects = () => {
+
+
+
+
+
+
+
+
+}
+
+
+
+export { loadProjects, project };
