@@ -1,21 +1,19 @@
-import { todo, loadTodos } from './todo';
 
-import { project, loadProjects } from './project';
+
+import './style.css';
+
+import { todo, loadTodos, loadOneTodo } from './todo';
+
+import { project, loadProjects, loadOneProject } from './project';
 
 import storage from './storage';
 
 const mainProj = new project('Trump', 'Biden');
 
-console.log(mainProj);
+const mainTodo = new todo('Testingsiaowdjoawid', 'Testing', 'whenever', 'now')
 
-storage.addProject(mainProj);
+mainProj.addTodo(mainTodo)
 
-console.log(storage)
-
-
-storage.removeProject(mainProj)
-
-
-console.log(storage)
+loadOneProject(mainProj)
 
 

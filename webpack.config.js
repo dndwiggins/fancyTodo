@@ -1,5 +1,4 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -20,13 +19,19 @@ module.exports = {
             },
         ],
     },
-
     plugins: [
         new HtmlWebpackPlugin({
             title: 'fancyTodo',
             template: './src/index.html',
             filename: 'index.html',
-            inject: 'body'
-        })
-    ]
+            inject: 'body',
+        }),
+    ],
+    resolve: {
+        fallback: {
+            "path": require.resolve("path-browserify"),
+            "util": require.resolve("util/"),
+            "crypto": require.resolve("crypto-browserify"),
+        },
+    },
 };

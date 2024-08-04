@@ -1,3 +1,50 @@
-p {
-    color: red;
+.todoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.projectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-color: black;
+    border: 5px;
+    border-style: solid;
+
+}
+
+.projectContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+body {
+    margin: 0;
+}
+
+#main-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    /* 250px for the aside, 1fr for the rest */
+    height: 100vh;
+    width: 100vw;
+}
+
+#content {
+    background-color: #e2e2e2;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+
+
+aside {
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
