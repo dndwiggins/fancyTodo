@@ -8,12 +8,28 @@ import { project, loadProjects, loadOneProject } from './project';
 
 import storage from './storage';
 
+import loadHome from './loadHome';
+
 const mainProj = new project('Trump', 'Biden');
+
+const mainProj2 = new project('Obama', 'Harris');
 
 const mainTodo = new todo('Testingsiaowdjoawid', 'Testing', 'whenever', 'now')
 
-mainProj.addTodo(mainTodo)
+const mainTodo2 = new todo('Yo MAMAMAMA', 'TeDJWJDW', 'whenever', 'now')
 
-loadOneProject(mainProj)
+loadHome()
+
+
+storage.addProject(mainProj);
+storage.addProject(mainProj2);
+
+mainProj.addTodo(mainTodo)
+mainProj2.addTodo(mainTodo2)
+
+loadProjects(storage)
+
+
+
 
 

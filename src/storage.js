@@ -2,6 +2,9 @@ import todo from './todo';
 
 import project from './project';
 
+
+
+
 const storage = (function () {
 
     var projects = []
@@ -27,6 +30,6 @@ const storage = (function () {
     return { projects, addProject, removeProject };
 })();
 
-//const loadStorage = () => {}
+
 
 export default storage;

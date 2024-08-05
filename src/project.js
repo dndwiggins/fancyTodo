@@ -1,4 +1,6 @@
-import todo, { loadTodos } from './todo';
+import { todo } from './todo';
+
+import { loadTodos } from './todo';
 
 import storage from './storage';
 
@@ -29,15 +31,12 @@ class project {
 
 }
 
-
-
-const loadProjects = () => {
-
-
-
-
-
+const loadProjects = (storage) => {
+    storage.projects.forEach(project => {
+        loadOneProject(project)
+    });
 }
+
 
 
 const loadOneProject = (project) => {
@@ -69,10 +68,13 @@ const loadOneProject = (project) => {
 
     });
 
-    projectDel.addEventListener('click', function () {
+    projectDel.addEventListener('click', function (event) {
+        event.stopPropagation();
         //del current project from DOM, call delete from database
-        projectContentcontent.removeChild(projectContainer)
+        projectContent.removeChild(projectContainer)
+        clearContent()
         storage.removeProject(project)
+
 
     });
 

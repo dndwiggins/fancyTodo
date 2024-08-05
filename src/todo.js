@@ -31,15 +31,31 @@ class todo {
 
 const loadTodos = (project) => { //takes a project and loads its todos 
 
+    const content = document.getElementById('content');
+
+    const addTodo = document.createElement('button')
+
+    addTodo.innerHTML = "Add Todo"
+
+    addTodo.addEventListener('click', function () {
+        //add todo pop up window
+        //const userTodo = new todo()
+
+        //at the end load that one new todo aswell
+        //loadOneTodo(userTodo)
+    });
+
+    content.appendChild(addTodo)
+
     project.todos.forEach(todo => {
-        loadOneTodo(todo);
+        loadOneTodo(todo, project); //had to update this call
     });
 
 }
 
 
 
-const loadOneTodo = (todo) => {
+const loadOneTodo = (todo, project) => {
 
     const content = document.getElementById('content');
 
@@ -72,6 +88,8 @@ const loadOneTodo = (todo) => {
     todoDel.addEventListener('click', function (e) { //deletes a todo, needs to also delete todo from project array
 
         content.removeChild(todoContainer)
+        project.removeTodo(todo)
+
     });
 
 
