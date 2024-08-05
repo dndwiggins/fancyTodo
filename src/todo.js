@@ -1,5 +1,5 @@
 
-import project from './project';
+import project, { clearContent } from './project';
 
 
 class todo {
@@ -30,67 +30,65 @@ class todo {
 //maybe should just load individual todo 
 
 const loadTodos = (project) => { //takes a project and loads its todos 
+    clearContent();
 
     const content = document.getElementById('content');
 
-    const addTodo = document.createElement('button')
+    const addTodo = document.createElement('button');
 
-    addTodo.innerHTML = "Add Todo"
+    addTodo.innerHTML = "Add Todo";
 
-
-    addTodo.addEventListener('click', function () {
-        //add todo pop up window
-        //const userTodo = new todo()
-
+    const handleAddTodoClick = () => { //opens modal
         const modalTodo = document.getElementById('modalTodo');
+
         const closeModalBtnTodo = document.getElementById('closeModalBtnTodo');
-        const todoSubmit = document.getElementById('todoSubmit')
+
+        let todoSubmit = document.getElementById('todoSubmit');
 
         modalTodo.showModal();
 
-        closeModalBtnTodo.addEventListener('click', () => {
-            modalTodo.close();
-        });
-
-        todoSubmit.addEventListener('click', function () {
-
-            const todoTitle = document.getElementById('titleTodo').value
-
-            const todoDesc = document.getElementById('descriptionTodo').value
-
-            const todoDate = document.getElementById('dueTodo').value
-
-            const todoPri = document.getElementById('priorityTodo').value
-
-            const userTodo = new todo(todoTitle, todoDesc, todoDate, todoPri)
-
-
-            console.log(userTodo)
-
-            project.addTodo(userTodo)
-
-            //at the end load that one new todo aswell
-            //loadOneTodo(userTodo)
-
-            loadOneTodo(userTodo, project)
+        const closeModal = () => {
 
             modalTodo.close();
 
-            document.getElementById('titleTodo').value = ''
-            document.getElementById('descriptionTodo').value = ''
-            document.getElementById('dueTodo').value = ''
-            document.getElementById('priorityTodo').value = ''
+            closeModalBtnTodo.removeEventListener('click', closeModal);
 
+        };
 
-        });
+        closeModalBtnTodo.addEventListener('click', closeModal);
 
+        const handleTodoSubmit = () => {
+            const todoTitle = document.getElementById('titleTodo').value;
+            const todoDesc = document.getElementById('descriptionTodo').value;
+            const todoDate = document.getElementById('dueTodo').value;
+            const todoPri = document.getElementById('priorityTodo').value;
 
-    });
+            const userTodo = new todo(todoTitle, todoDesc, todoDate, todoPri);
 
-    content.appendChild(addTodo)
+            project.addTodo(userTodo);
+            loadOneTodo(userTodo, project);
+
+            modalTodo.close();
+
+            document.getElementById('titleTodo').value = '';
+            document.getElementById('descriptionTodo').value = '';
+            document.getElementById('dueTodo').value = '';
+            document.getElementById('priorityTodo').value = '';
+
+            todoSubmit.removeEventListener('click', handleTodoSubmit);
+        };
+
+        // Remove existing event listeners before adding a new one
+        todoSubmit.replaceWith(todoSubmit.cloneNode(true));
+        todoSubmit = document.getElementById('todoSubmit');
+        todoSubmit.addEventListener('click', handleTodoSubmit);
+    };
+
+    addTodo.addEventListener('click', handleAddTodoClick);
+    content.appendChild(addTodo);
 
     project.todos.forEach(todo => {
-        loadOneTodo(todo, project); //had to update this call
+        loadOneTodo(todo, project);
     });
 
 }
