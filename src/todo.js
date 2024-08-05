@@ -37,12 +37,54 @@ const loadTodos = (project) => { //takes a project and loads its todos
 
     addTodo.innerHTML = "Add Todo"
 
+
     addTodo.addEventListener('click', function () {
         //add todo pop up window
         //const userTodo = new todo()
 
-        //at the end load that one new todo aswell
-        //loadOneTodo(userTodo)
+        const modalTodo = document.getElementById('modalTodo');
+        const closeModalBtnTodo = document.getElementById('closeModalBtnTodo');
+        const todoSubmit = document.getElementById('todoSubmit')
+
+        modalTodo.showModal();
+
+        closeModalBtnTodo.addEventListener('click', () => {
+            modalTodo.close();
+        });
+
+        todoSubmit.addEventListener('click', function () {
+
+            const todoTitle = document.getElementById('titleTodo').value
+
+            const todoDesc = document.getElementById('descriptionTodo').value
+
+            const todoDate = document.getElementById('dueTodo').value
+
+            const todoPri = document.getElementById('priorityTodo').value
+
+            const userTodo = new todo(todoTitle, todoDesc, todoDate, todoPri)
+
+
+            console.log(userTodo)
+
+            project.addTodo(userTodo)
+
+            //at the end load that one new todo aswell
+            //loadOneTodo(userTodo)
+
+            loadOneTodo(userTodo, project)
+
+            modalTodo.close();
+
+            document.getElementById('titleTodo').value = ''
+            document.getElementById('descriptionTodo').value = ''
+            document.getElementById('dueTodo').value = ''
+            document.getElementById('priorityTodo').value = ''
+
+
+        });
+
+
     });
 
     content.appendChild(addTodo)
