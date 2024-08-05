@@ -18,6 +18,9 @@ const mainTodo = new todo('Testingsiaowdjoawid', 'Testing', 'whenever', 'now')
 
 const mainTodo2 = new todo('Yo MAMAMAMA', 'TeDJWJDW', 'whenever', 'now')
 
+
+
+
 loadHome()
 
 
@@ -28,6 +31,42 @@ mainProj.addTodo(mainTodo)
 mainProj2.addTodo(mainTodo2)
 
 loadProjects(storage)
+
+const modal = document.getElementById('modal');
+const openModalBtn = document.getElementById('projectBt');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const projectSubmit = document.getElementById('projectSubmit')
+
+openModalBtn.addEventListener('click', () => {
+    modal.showModal();
+});
+
+closeModalBtn.addEventListener('click', () => {
+    modal.close();
+});
+
+
+projectSubmit.addEventListener('click', () => {
+
+    const projectTitle = document.getElementById('title').value
+
+    const projectDesc = document.getElementById('description').value
+
+    const userProject = new project(projectTitle, projectDesc)
+
+    console.log(userProject)
+
+    storage.addProject(userProject)
+
+    loadOneProject(userProject)
+
+    modal.close();
+
+    document.getElementById('title').value = ''
+
+    document.getElementById('description').value = ''
+
+});
 
 
 

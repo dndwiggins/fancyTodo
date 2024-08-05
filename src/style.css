@@ -38,6 +38,18 @@ body {
     box-sizing: border-box;
 }
 
+dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 1em;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
 
 
 aside {
