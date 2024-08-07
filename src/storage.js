@@ -25,9 +25,20 @@ const storage = (function () {
 
     }
 
+    const loadStorage = () => {
+        const storedProjects = JSON.parse(localStorage.getItem('projects'));
+        if (storedProjects) {
+            projects = storedProjects;
+        }
+    };
+
+    const saveStorage = () => {
+        localStorage.setItem('projects', JSON.stringify(projects));
+    };
 
 
-    return { projects, addProject, removeProject };
+
+    return { projects, addProject, removeProject, loadStorage, saveStorage };
 })();
 
 

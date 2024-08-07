@@ -21,8 +21,7 @@ const mainTodo2 = new todo('Yo MAMAMAMA', 'TeDJWJDW', 'whenever', 'now')
 
 
 
-loadHome()
-
+//storage.loadStorage()
 
 storage.addProject(mainProj);
 storage.addProject(mainProj2);
@@ -31,6 +30,12 @@ mainProj.addTodo(mainTodo)
 mainProj2.addTodo(mainTodo2)
 
 loadProjects(storage)
+
+
+loadHome()
+
+loadHomeRun()
+
 
 const modal = document.getElementById('modal');
 const openModalBtn = document.getElementById('projectBt');
@@ -58,6 +63,8 @@ projectSubmit.addEventListener('click', () => {
 
     storage.addProject(userProject)
 
+    storage.saveStorage()
+
     loadOneProject(userProject)
 
     modal.close();
@@ -68,6 +75,29 @@ projectSubmit.addEventListener('click', () => {
 
 });
 
+
+function loadHomeRun() {
+
+
+    const content = document.getElementById('content')
+
+    const docTitle = document.createElement('h1')
+
+    const docDesc = document.createElement('h1')
+
+    docTitle.innerHTML = "Welcome to my fancy todo list app"
+
+    docDesc.innerHTML = "Create and Delete Projects and add invidiual todos to each project and there is local storage!!"
+
+
+    content.appendChild(docTitle)
+
+    content.appendChild(docDesc)
+
+
+
+
+}
 
 
 
